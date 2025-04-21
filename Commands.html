@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crystal RP Admin Commands</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #1f2937;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    header img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    .level-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+      gap: 10px;
+    }
+
+    .level-buttons button {
+      background: linear-gradient(145deg, #3b82f6, #2563eb);
+      border: none;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .level-buttons button:hover {
+      background: #1d4ed8;
+      transform: scale(1.05);
+    }
+
+    .command-section {
+      display: none;
+      max-width: 800px;
+      margin: 1rem auto;
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .command-section h2 {
+      margin-top: 0;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 0.5rem;
+    }
+
+    .command {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e5e7eb;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .command:hover {
+      background-color: #f3f4f6;
+      transform: translateX(5px);
+    }
+
+    /* Scroll to Top Button */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 100;
+      background-color: #1f2937;
+      color: white;
+      border: none;
+      outline: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, transform 0.3s ease;
+    }
+
+    #scrollTopBtn:hover {
+      background-color: #374151;
+      transform: scale(1.1);
+    }
+
+    #scrollTopBtn.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #scrollTopBtn svg {
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="crplogo.png" alt="Logo" />
+    <h1>Crystal RP – Admin Commands</h1>
+  </header>
+
+  <div class="level-buttons">
+    <button onclick="toggleLevel('level1')">Level 1 – Helper</button>
+    <button onclick="toggleLevel('level2')">Level 2 – Junior Admin</button>
+    <button onclick="toggleLevel('level3')">Level 3 – Administrator</button>
+    <button onclick="toggleLevel('level4')">Level 4 – Senior Administrator</button>
+  </div>
+
+  <!-- Level 1 -->
+  <div id="level1" class="command-section">
+    <h2>Level 1 – Helper</h2>
+    <div class="command">📍 /sendmark [id] – Set a map marker</div>
+    <div class="command">💬 /a – Admin chat</div>
+  </div>
+
+  <!-- Level 2 -->
+  <div id="level2" class="command-section">
+    <h2>Level 2 – Junior Administrator</h2>
+    <div class="command">💬 /a – Admin chat</div>
+    <div class="command">🧍 /admins – List of online admins</div>
+    <div class="command">📩 /asms [id] – Send SMS</div>
+    <div class="command">📦 /az – Admin zone</div>
+    <div class="command">⛓️ /demorgan [id] [time] [reason] – Jail player</div>
+    <div class="command">🎯 /gethere [id] – Bring player to you</div>
+    <div class="command">🚗 /getcar [carid] – Teleport vehicle to you</div>
+    <div class="command">🛡️ /gm – God mode</div>
+    <div class="command">🚀 /goto [id] – Teleport to player</div>
+    <div class="command">❤️ /hp [id] [hp] – Set HP</div>
+    <div class="command">🆔 /id [nick] – Get ID by nickname</div>
+    <div class="command">🧲 /metp [id] – Teleport player to you</div>
+    <div class="command">🔇 /mute [id] [time] [reason] – Mute player</div>
+    <div class="command">🆔 /pcid [staticid] – Info by static ID</div>
+    <div class="command">⏱️ /ptime [id] – Check reason and duration of player’s jail (includes regular jail too)</div>
+    <div class="command">🔧 /repair – Repair vehicle</div>
+    <div class="command">🌌 /setdim [id] [dimension] – Set player dimension</div>
+    <div class="command">🚘 /setvehdim – Set vehicle dimension</div>
+    <div class="command">👁️ /spec [id] – Spectate player</div>
+    <div class="command">🚫 /specoff – Stop spectating</div>
+    <div class="command">🧍 /tp [id] – Teleport to player</div>
+    <div class="command">🔓 /udemorgan [id]  [true/leave blank if false] – Release from jail</div>
+    <div class="command">🔊 /unmute [id] – Unmute player</div>
+    <div class="command">👑 /leaders – Online leaders</div>
+    <div class="command">🏧 /tpatm – Teleport to ATM</div>
+    <div class="command">📇 /gs [id] – Show static ID, name, and player ID</div>
+    <div class="command">🚪 /aeject [id] – Eject from vehicle</div>
+    <div class="command">⏰ /timestamp – Toggle chat timestamp</div>
+    <div class="command">📜 /checkpunish – View punishments</div>
+    <div class="command">🏠 /checkpropstatic [[staticId]] – Check property by static ID</div>
+    <div class="command">📑 /sendmark [id] – Admin sets a map marker which the player receives</div>
+    <div class="command">🆔 /puuid [passport] – Find player by passport</div>
+    <div class="command">🌐 /checkdim [id] – Check dimension</div>
+    <div class="command">🫥 /hide – Become invisible</div>
+    <div class="command">🧍 /tpped [id] – Teleport to NPC</div>
+    <div class="command">🥾 /kick [id] – Kick player</div>
+    <div class="command">🩹 /rescue [id] – Revive player</div>
+    <div class="command">🚙 /getcarme – Go to vehicle</div>
+    <div class="command">🏪 /tpbiz – Teleport to business</div>
+    <div class="command">🏠 /tphouse – Teleport to house</div>
+    <div class="command">📍 /tpc – Teleport to coords</div>
+    <div class="command">🔇 /offmute – Mute offline</div>
+    <div class="command">🔍 /pname – Get static ID</div>
+    <div class="command">📍 /c – View coordinates</div>
+    <div class="command">🚗 /showpveh [id] – Vehicle model</div>
+    <div class="command">♻️ /flip [id] – Flip vehicle</div>
+  </div>
+
+  <!-- Level 3 -->
+  <div id="level3" class="command-section">
+    <h2>Level 3 – Administrator</h2>
+    <div class="command">🗑️ /delveh [carid] – Delete vehicle</div>
+    <div class="command">☠️ /kill [id] – Kill player</div>
+    <div class="command">🔒 /offjail [id] – Jail offline</div>
+    <div class="command">🚫 /unjail [id] – Release from jail</div>
+    <div class="command">🫥 /chide – Invisibility from cheaters</div>
+    <div class="command">⚠️ /warn – Issue a warning</div>
+    <div class="command">🔫 /gunban – Ban from weapons</div>
+    <div class="command">🔓 /ungunban – Unban weapons</div>
+    <div class="command">📦 /offgunban [staticId] [hours]  – Ban weapons for a player offline</div>
+    <div class="command">🔔 /offwarn – Warn offline</div>
+    <div class="command">❌ /unwarn – Remove warning</div>
+    <div class="command">🎒 /checkinv [id] – Check inventory</div>
+    <div class="command">🖊️ /changename [id] – Change nickname</div>
+  </div>
+
+  <!-- Level 4 -->
+  <div id="level4" class="command-section">
+    <h2>Level 4 – Senior Administrator</h2>
+    <div class="command">⚙️ /rescar [carid] – Respawn vehicle</div>
+    <div class="command">💥 /eventhp – Set event HP</div>
+    <div class="command">🎮 /mpveh – Spawn event vehicle</div>
+    <div class="command">🚗 /plveh – Spawn admin vehicle</div>
+    <div class="command">🛠️ /delacar – Delete admin vehicle</div>
+    <div class="command">🎉 /createevent – Create event</div>
+    <div class="command">⏳ /startevent – Start event</div>
+    <div class="command">🛑 /stopevent – End event</div>
+    <div class="command">🚗 /mpveh [vehicle] – Spawn vehicle</div>
+    <div class="command">🔋 /eventar – Give armor to event participants</div>
+    <div class="command">👋 /eventkick – Kick from event</div>
+    <div class="command">🛠️ /veh – Spawn vehicle near you</div>
+    <div class="command">🚙 /plveh – Spawn vehicle and enter</div>
+    <div class="command">📛 /changename – Change nickname</div>
+    <div class="command">🔋 /afuel – Refuel a vehicle</div>
+    <div class="command">🔒 /ban – Ban player</div>
+    <div class="command">👑 /templeader – Assign temporary leader</div>
+    <div class="command">👥 /delfrac [id] – Kick from faction</div>
+    <div class="command">⏹️ /offdelfrac [id] – Remove offline faction leader</div>
+    <div class="command">🧊 /fz – Freeze player</div>
+    <div class="command">🧊 /unfz – Unfreeze player</div>
+    <div class="command">🚫 /offban – Issue offline ban</div>
+    <div class="command">🔓 /unban – Unban player</div>
+    <div class="command">🏴 /tpcapturezone – Teleport to gang zone</div>
+    <div class="command">🚘 /spawncars [fractionID] – Spawn faction vehicles</div>
+    <div class="command">🔫 /giveammo – Give ammo</div>
+  </div>
+
+  <button id="scrollTopBtn" title="Go to top">
+    <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+  </button>
+
+  <script>
+    function toggleLevel(level) {
+      const sections = document.querySelectorAll('.command-section');
+      sections.forEach(section => section.style.display = 'none');
+      
+      const section = document.getElementById(level);
+      section.style.display = section.style.display === 'block' ? 'none' : 'block';
+    }
+
+    window.onscroll = function() {
+      document.getElementById('scrollTopBtn').classList.toggle('show', window.scrollY > 100);
+    }
+
+    document.getElementById('scrollTopBtn').onclick = function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
+
+
+  <!--lv 4 /plveh –  -->
